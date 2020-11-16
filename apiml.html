@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>API Mercado Livre</h2>
+
+<button type="button" onclick="loadDoc()">Requisição</button>
+<button type="button" onclick="loadDoc2()">Requisição invalida</button>
+<p id="demo"></p>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+      let json = this.responseText;
+      let obj = JSON.parse(json);
+    
+		if (obj.id == "ARS" ){
+			document.write("Moeda: " + obj.id);   
+		}
+		else {
+			document.write("dados incorretos");
+		}
+		if (obj.symbol == "$" ){
+			document.write("<br>Simbolo: " + obj.symbol);   
+		}
+		else {
+			document.write("dados incorretos");
+		}
+		if (obj.description == "Peso argentino" ){
+			document.write("<br>Descrição: " + obj.description);   
+		}
+		else {
+			document.write("dados incorretos");
+		}
+    }
+
+
+};
+  xhttp.open("GET", "https://api.mercadolibre.com/currencies/ARS", true);
+  xhttp.send();
+}
+function loadDoc2() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 404) {
+      document.getElementById("demo").innerHTML = this.responseText;
+      let json = this.responseText;
+      let obj = JSON.parse(json);
+    
+		if (obj.message == "Currency with id ARsdsdasdS not found."){
+			document.write("Mensagem: " + obj.message);   
+		}
+		else {
+			document.write("dados incorretos");
+		}
+		if (obj.error == "not_found"){
+			document.write("<br>Error: " + obj.error);   
+		}		
+		else {
+			document.write("dados incorretos");
+		}
+    }
+
+
+};
+  xhttp.open("GET", "https://api.mercadolibre.com/currencies/ARsdsdasdS", true);
+  xhttp.send();
+}
+
+
+
+</script>
+ 
+</body>
+</html>
