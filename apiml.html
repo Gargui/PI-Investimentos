@@ -50,14 +50,14 @@ function loadDoc2() {
       let json = this.responseText;
       let obj = JSON.parse(json);
     
-		if (obj.message == "Currency with id ARsdsdasdS not found."){
-			document.write("Mensagem: " + obj.message);   
+		if (obj.message == "Currency with id ARsdasdS not found."){
+			document.write("Mensagem: Moeda não encontrada");   
 		}
 		else {
 			document.write("dados incorretos");
 		}
 		if (obj.error == "not_found"){
-			document.write("<br>Error: " + obj.error);   
+			document.write("<br>Error:404");   
 		}		
 		else {
 			document.write("dados incorretos");
@@ -66,7 +66,7 @@ function loadDoc2() {
 
 
 };
-  xhttp.open("GET", "https://api.mercadolibre.com/currencies/ARsdsdasdS", true);
+  xhttp.open("GET", "https://api.mercadolibre.com/currencies/ARsdasdS", true);
   xhttp.send();
 }
 
